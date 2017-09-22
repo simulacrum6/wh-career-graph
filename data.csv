@@ -37,7 +37,7 @@ id;career;type;role;entries;exits
 35;Carcassonne Shepherd;Basic;Commoners;Grail Pilgrim, Hunter, Outlaw, Outrider, Peasant, Woodsman, Vagabond;Grail Pilgrim, Herrimault, Outlaw, Scout, Vagabond, Veteran
 36;Cartographer;Basic;Commoners;Coachman, Messenger, Navigator, Scout, Scribe, Student, Tradesman;Artisan, Explorer, Forger, Navigator, Scholar, Scribe, Vagabond
 37;Cat Burglar;Advanced;Criminals;Bone Picker, Charlatan, Chimneysweep, Ex-Convict, Grave Robber, Rat Catcher, Thief;Crime Lord, Fence, Master Thief, Racketeer, Vagabond
-38;Catechist;Advanced;Academics;Anointed Priest, Dilettante, Friar, Priest, Scholar, Scribe, Student, Zealor;Demagogue, Friar, Initiate, Scholar, Zealot
+38;Catechist;Advanced;Academics;Anointed Priest, Dilettante, Friar, Priest, Scholar, Scribe, Student, Zealot;Demagogue, Friar, Initiate, Scholar, Zealot
 39;Cenobite;Basic;Academics; ;Mystic, Outlaw, Servant, Vagabond
 40;Champion;Advanced;Warriors;Assassin, Duellist, Judicial Champion, Knight of the Inner Circle, Targeteer, Veteran, Witch Hunter;Assassin, Scout, Sergeant, Witch Hunter
 41;Charcoal Burner;Basic;Rangers;Camp Follower, Hunter, Miner, Peasant;Hunter, Miner, Scout, Vagabond, Woodsman
@@ -50,3 +50,37 @@ id;career;type;role;entries;exits
 48;Crime Lord;Advanced;Criminals;Cat Burglar, Demagogue, Fence, Guild Master, Master Thief, Outlaw Chief, Politician, Steward;Demagogue, Master Thief, Outlaw Chief, Politician
 49;Crusader;Advanced;Warriors;Knight, Noble Lord, sergeant, Veteran;Captain, Judicial Champion, Explorer, Initiate, Knight of the Inner Circle, Noble Lord, Veteran
 50;Cult Attendant;Advanced;Academics;Anointed Priest, Courtier, Initiate, Messenger, Priest, Valet;Politician, Priest, Squire, Steward
+51;Daemon Slayer;Advanced;Warriors;Giant Slayer;Glorious Death
+52;Deepwatcher;Basic;Rangers;Rat Catcher, Shieldbreaker, Soldier, Tomb Raider, Watchman;Engineer, Explorer, Mercenary, Sergeant, Smuggler, Veteran
+53;Demagogue;Advanced;Academics;Agitator, Anointed Priest, Artisan, Charlatan, Crime Lord, Flagellant, Friar, Initiate, Minstrel, Outlaw, Outlaw Chief, Politician, Prelate, Rogue, Vampire Hunter, Witch Hunter;Crime Lord, Friar, Mercenary, Outlaw Chief, Politician
+54;Dilettante;Basic;Academics; ;Apprentice Wizard, Astrologer, Barber-Surgeons, Catechist, Charlatan, Courtier, Initiate, Navigator, Raconteur, Student, Tomb Robber, Tradesman, Verenean Investigator
+55;Drover;Basic;Rangers;Coachman, Messenger, Outrider, Steppes Nomad;Highwayman, Horse Coper, Horse Master, Messenger, Outlaw, Outrider, Roadwarden, Scout
+56;Duellist;Advanced;Warriors;Courtier, Estalian Diestro, highwayman, Pistolier, Protagonist, Rapscallion, Sergeant, Targeteer;Assassin, Champion, Highwayman, Rogue, Sergeant
+57;Dung Collector;Basic;Commoners;Bone Picker, Camp Follower, Peasant, Rat Catcher, Vagabond;Bone Picker, Grave Robber, Rat Catcher, Sewer Jack, Thug
+58;Embalmer;Basic;Academics;Apothecary, Barber-Surgeon, Student, Tradesman;Apprentice Wizard, Burgher, Grave Robber, Physician, Scholar
+59;Enforcer;Advanced;Rangers;Bounty Hunter, Hunter, Road Warden, Watchman;Spy, Witch Hunter
+60;Engineer;Advanced;Commoners;Artisan, Miner, Student, Tradesman;Artisan, Explorer, Guild Master, Pistolier, Smuggler
+61;Entertainer;Basic;Commoners;Animal Trainer,Herald, Rogue, Thief, Vagabond;Animal Trainer, Charlatan, Minstrel Rogue, Thief, Vagabond
+62;Envoy;Basic;Academics;Student, Tradesman;Charlatan, Merchant, Rogue, Seaman, Student, Vagabond
+63;Estalian Diestro;Basic;Warriors; ;Bodyguard, Duellist, Highwayman, Protagonist, Rogue
+64;Ex-Convict;Basic;Criminals;Agitator, Grave Robber, Outlaw, Protagonist, Rogue, Smuggler, Thief, Thug, Tomb Robber;Cat Burglar, Charlatan, Fence, Grave Robber, Highwayman, Outlaw, Protagonist, Racketeer, Thug, Vagabond
+65;Exciseman;Basic;Commoners;Messenger, Scriber;Agitator, Litigant, Mercharnt, Militiaman, Outlaw, Roadwarden, Thief
+66;Exorcist;Advanced;Academics;Anointed Priest, Priest;Anointed Priest, Lay Priest, Scholar, Witch Hunter
+67;Explorer;Advanced;Rangers;Captain, Cartographer, Engineer, Herald, Master Thief, Master Wizard, Mate, Navigator, Scholar, Scout, Sea Captain, Spy, Wizard Lord;Captain, Merchant, Sea Captain, Spy
+68;Faceless;Advanced;Criminals;Battle Pilgrim, Crime Lord, Demagogue, Knight of the Realm, Noble Lord, Outlaw Chief, Politician, Questing Knight, Steward, Veteran;Crime Lord, Demagogue, Explorer, Highwayman, Outlaw Chief
+69;Farmer;Basic;Commoners;Innkeeper, Merchant, Peasant Tradesman, Veteran;Innkeeper, Merchant, Militiaman, Politician, Steward
+70;Fence;Advanced;Criminals;Bone Picker, Burgher, Cat Burglar, Ex-Convict, Graver Robber, Innkeeper, Racketeer, Rapscallion, Smuggler, Steward, Thief, Tomb Robber;Charlatan, Crime Lord, Master Thief, Racketeer
+71;Ferryman;Basic;Rangers;Coachman, Smuggler, Toll Keeper;Boatman, Highwayman, Roadwarden, Seaman, Smuggler
+72;Fieldwarden;Basic;Rangers;Hunter, Militiaman, Toll Keeper;Bounty Hunter, Mercenary, Scout, Vagabond, Vampire Hunter
+73;Fisherman;Basic;Commoners;Boatman, Peasant;Marine, Merchant, Militiaman, Navigator, Seaman
+74;Flagellant;Advanced;Academics;Anointed Priest, Friar, Priest, Zealot;Demagogue, Interrogator, Priest, Soldier, Veteran
+75;Foreman;Advanced;Commoners;Peasant, Scribe, Stevedore, Tradesman;Demagogue, Fence, Guild Master, Politician, Racketeer
+76;Forger;Advanced;Criminals;Artisan, Cartographer, Messenger, Smuggler, Student, Tradesman;Artisan, Charlatan, Fence, Scribe, Tradesman, Student, Scholar
+77;Freeholder;Basic;Commoners;Bondsman, Burgher, Fisherman, Skald, Whaler, Tradesman;Artisan, Innkeeper, Marauder, Merchant, Slaver
+78;Friar;Advanced;Academics;Demagogue, Initiate, Lay Priest, Physician, Prelate, Scholar, Vagabond, Zealot;Demagogue, Flagellant, Lay Priest, Prelate, Priest, Scholar
+79;Frogwife;Basic;Commoners;Bone Picker, Camp Follower, Peasant;Boatman, bone Picker, Camp Follower, Swampaire, Grail Pilgrim Herrimault, Servant, Tradesman, Vagabond, Village Elder
+80;Gambler;Basic;Criminals;Entertainer, Noble, Rogue, Mercenary, Student, Thief, Vagabond;Charlatan, Demagogue, Entertainer, Highwayman, Rapscallion, Rogue
+82;Ghost Strider;Advanced;Rangers;Scout;Captain, Outlaw Chief, Targeteer, Vampire Hunter
+83;Giant Slayer;Advanced;Warriors;Troll Slayer;Daemon Slayer
+84;Grail Knight;Advanced;Warriors;Questing Knight;Captain, Courtier, Explorer, Faceless, Noble Lord, Politician
+85;Grail Pilgrim;Basic;Warriors;Carcassonne Shepherd, Hunter, Herrimault, Outlaw, Peasant, Tradesman, Vagabond;Battle Pilgrim, Carcassonne Shepherd, Mercenary, Herrimault, Vagabond

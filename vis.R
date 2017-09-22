@@ -17,5 +17,5 @@ edges <- read.csv('edgelist_index.csv', as.is = TRUE)
     edges$arrows <- 'to'
     edges$color <- '#aaa'
 
-visNetwork(nodes, edges) %>%
-    visIgraphLayout('layout_with_fr')
+visNetwork(nodes, edges) #%>%
+    #visIgraphLayout('layout_with_fr')

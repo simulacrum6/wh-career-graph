@@ -1,40 +1,126 @@
 from,to
-Border Courtier,Assassin
-Camp Follower,Charlatan
+Forger,Fence
 Admiral,Ambassador
-Apothecary,Barber-Surgeon
-Cloaked Brother,Crime Lord
+Duellist,Assassin
+Bondsman,Freeholder
+Animal Trainer,Entertainer
+Gambler,Demagogue
 Agitator,Charlatan
-Artillerist,Artisan
-Bodyguard,Bounty Hunter
-Cloaked Brother,Charlatan
+Faceless,Explorer
+Ferryman,Boatman
+Admiral,Explorer
+Engineer,Artisan
 Badlands Rangers,Captain
-Astrologer,Charlatan
+Exciseman,Agitator
 Anchorite,Badlander
-Border Courtier,Courtier
-Assassin,Champion
+Artisan,Engineer
 Animal Trainer,Bear Tamer
-Bonepicker,Cat Burglar
-Bondsman,Bodyguard
 Apothecary,Apprentice Wizard
-Bodyguard,Bailiff
-Burgher,Agitator
+Foreman,Demagogue
+Dilettante,Courtier
 Border Courtier,Captain
-Crusader,Captain
+Forger,Charlatan
+Frogwife,Boatman
+Gambler,Charlatan
+Ex-Convict,Cat Burglar
+Demagogue,Friar
+Bear Tamer,Animal Trainer
+Cat Burglar,Crime Lord
+Burgher,Fence
+Grail Pilgrim,Battle Pilgrim
+Battle Pilgrim,Faceless
+Boatman,Fisherman
+Camp Follower,Charlatan
+Foreman,Fence
+Cloaked Brother,Crime Lord
+Embalmer,Burgher
+Cat Burglar,Fence
+Deepwatcher,Explorer
+Fence,Charlatan
+Crime Lord,Demagogue
+Dilettante,Astrologer
+Bondsman,Bodyguard
 Charlatan,Cat Burglar
-Black Guard,Champion
-Cantor,Catechist
-Badlander,Cat Burglar
-Captain,Agitator
+Faceless,Crime Lord
+Cartographer,Forger
+Courtier,Duellist
+Grail Pilgrim,Carcassonne Shepherd
+Engineer,Explorer
 Astrologer,Apprentice Wizard
 Champion,Assassin
 Ambassador,Captain
-Bear Tamer,Animal Trainer
-Black Guard,Captain
+Giant Slayer,Daemon Slayer
 Cartographer,Artisan
-Cat Burglar,Crime Lord
+Cloaked Brother,Demagogue
+Catechist,Friar
+Carcassonne Shepherd,Grail Pilgrim
+Bear Tamer,Entertainer
+Cloaked Brother,Charlatan
+Astrologer,Charlatan
+Envoy,Charlatan
+Deepwatcher,Engineer
+Assassin,Champion
+Estalian Diestro,Duellist
+Anointed Priest,Demagogue
+Bonepicker,Cat Burglar
+Ghost Strider,Captain
+Exorcist,Anointed Priest
+Friar,Flagellant
+Entertainer,Animal Trainer
+Crusader,Explorer
+Astrologer,Explorer
+Burgher,Agitator
+Cartographer,Explorer
+Black Guard,Champion
+Cantor,Catechist
+Captain,Agitator
+Grail Knight,Captain
+Demagogue,Crime Lord
+Captain,Explorer
+Black Guard,Captain
 Coachman,Cartographer
+Dilettante,Catechist
+Entertainer,Charlatan
+Estalian Diestro,Bodyguard
+Apothecary,Embalmer
+Friar,Demagogue
 Chimneysweep,Cat Burglar
-Cloaked Brother,Assassin
+Agitator,Ex-Convict
+Cantor,Entertainer
 Apothecary,Artisan
+Duellist,Champion
 Courtier,Charlatan
+Bonepicker,Fence
+Border Courtier,Assassin
+Apothecary,Barber-Surgeon
+Artillerist,Artisan
+Catechist,Demagogue
+Charlatan,Demagogue
+Bodyguard,Bounty Hunter
+Ex-Convict,Charlatan
+Flagellant,Demagogue
+Ex-Convict,Fence
+Fieldwarden,Bounty Hunter
+Border Courtier,Courtier
+Grail Knight,Explorer
+Agitator,Demagogue
+Frogwife,Camp Follower
+Bodyguard,Bailiff
+Forger,Artisan
+Anointed Priest,Flagellant
+Dilettante,Charlatan
+Gambler,Entertainer
+Badlands Rangers,Explorer
+Crusader,Captain
+Freeholder,Artisan
+Grail Knight,Faceless
+Badlander,Cat Burglar
+Coachman,Ferryman
+Explorer,Captain
+Dilettante,Apprentice Wizard
+Embalmer,Apprentice Wizard
+Artisan,Demagogue
+Cloaked Brother,Assassin
+Faceless,Demagogue
+Grail Knight,Courtier
+Fence,Crime Lord

@@ -50,3 +50,37 @@ id,career,type,role
 48,Crime Lord,Advanced,Criminals
 49,Crusader,Advanced,Warriors
 50,Cult Attendant,Advanced,Academics
+51,Daemon Slayer,Advanced,Warriors
+52,Deepwatcher,Basic,Rangers
+53,Demagogue,Advanced,Academics
+54,Dilettante,Basic,Academics
+55,Drover,Basic,Rangers
+56,Duellist,Advanced,Warriors
+57,Dung Collector,Basic,Commoners
+58,Embalmer,Basic,Academics
+59,Enforcer,Advanced,Rangers
+60,Engineer,Advanced,Commoners
+61,Entertainer,Basic,Commoners
+62,Envoy,Basic,Academics
+63,Estalian Diestro,Basic,Warriors
+64,Ex-Convict,Basic,Criminals
+65,Exciseman,Basic,Commoners
+66,Exorcist,Advanced,Academics
+67,Explorer,Advanced,Rangers
+68,Faceless,Advanced,Criminals
+69,Farmer,Basic,Commoners
+70,Fence,Advanced,Criminals
+71,Ferryman,Basic,Rangers
+72,Fieldwarden,Basic,Rangers
+73,Fisherman,Basic,Commoners
+74,Flagellant,Advanced,Academics
+75,Foreman,Advanced,Commoners
+76,Forger,Advanced,Criminals
+77,Freeholder,Basic,Commoners
+78,Friar,Advanced,Academics
+79,Frogwife,Basic,Commoners
+80,Gambler,Basic,Criminals
+82,Ghost Strider,Advanced,Rangers
+83,Giant Slayer,Advanced,Warriors
+84,Grail Knight,Advanced,Warriors
+85,Grail Pilgrim,Basic,Warriors
