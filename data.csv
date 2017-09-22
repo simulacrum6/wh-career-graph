@@ -1,0 +1,52 @@
+id;career;type;role;entries;exits
+0;Abbot;Basic;Academics;Anointed Priest, High Priest, Monk, Scholar;High Priest, Scholar
+1;Admiral;Advanced;Warriors;Noble Lord, Sea Captain;Ambassador, Explorer, Guild Master
+2;Agent of the Shroud;Advanced;Criminals;Barber-Surgeon, Fieldwarden, Initiate, Scholar, Student, Tomb Robber, Vampire Hunter;Killer of the Dead, Priest, Scholar, Spy, Vampire Hunter, Witch Hunter
+3;Agitator;Basic;Commoners;Burgher, Captain, Herald, Highwayman, Scribe, Servant, Student, Zealot;Charlatan, Demagogue, Ex-Convict, Outlaw, Politician, Rogue, Zealot
+4;Ambassador;Advanced;Academics;Captain, High Priest, Ice Witch, Noble Lord, Wizard Lord;Captain, Merchant, Noble Lord, Politician
+5;Anchorite;Basic;Academics; ;Badlander, Mystic, Outlaw, Swamp Skipper, Vagabond
+6;Animal Trainer;Advanced;Rangers;Bear Tamer, Entertainer, Farmer, Hunter, Muleskinner, Peasant, Rat Catcher;Bear Tamer, Entertainer, Hunter
+7;Anointed Priest;Advanced;Academics;Priest;Demagogue, Flagellant, High Priest, Scholar, Witch Hunter
+8;Apothecary;Basic;Commoners;Apprentice Wizard, Barber-Surgeon, Hedge Wizard, Student;Apprentice Wizard, Artisan, Barber-Surgeon, Embalmer, Grave Robber, Merchant, Physician, Scholar
+9;Apprentice Runesmith;Basic;Commoners;Artisan, Runebearer, Scribe, Student;Journeyman Runesmith, Runebearer, Scholar, Scribe, Shieldbearer
+10;Apprentice Witch;Basic;Academics; ;Ice Maiden, Initiate of Ulric, Witch
+11;Apprentice Wizard;Basic;Academics;Dilettante, Hedge Wizard, Scholar, Scribe, Student;Journeyman Wizard, Scholar, Scribe
+12;Artillerist;Advanced;Warriors;Engineer, Sergeant;Artisan, captain, Guild Master, Mercenary, Veteran
+13;Artisan;Advanced;Commoners;Cartographer, Engineer, Militiaman, Navigator, Tradesman;Demagogue, Engineer, Guild Master, Merchant, Militiaman
+14;Assassin;Advanced;Criminals;Champion, Duellist, Judicial Champion, Outlaw Chief, Spy, Targeteer;Champion, Outlaw Chief, Rogue, Sergeant, Witch Hunter
+15;Astrologer;Advanced;Academics;Apothecary, Apprentice Wizard, Charlatan, Dilettante, Journeyman Wizard, Master Wizard, Navigator, Noble, Physician, Scholar, Student;Apprentice Wizard, Charlatan, Explorer, Navigator, Scholar
+16;Ataman;Advanced;Academics;Captain, Horse Master, Noble, Veteran;Politician, Priest, Noble Lord
+17;Badlander;Basic;Rangers;Anchorite, Peasant, Vagabond;Cat Burglar, Vagabond
+18;Badlands Rangers;Advanced;Rangers;Explorer, Outlaw Chief, Scout;Captain, Explorer, Outlaw Chief
+19;Bailiff;Basic;Warriors;Bodyguard, Jailer;Militiaman, Politician, Protagonist, Racketeer, Smuggler, Toll Keeper
+20;Barber-Surgeon;Basic;Commoners;Dilettante, Initiate, Student;Interrogator, Grave Robber, Physician, Tradesman, Vagabond
+21;Battle Pilgrim;Advanced;Warriors;Grail Pilgrim;Faceless, Sergeant, Vagabond, Veteran
+22;Bear Tamer;Basic;Commoners;Entertainer, Initiate of Ursun, Priest of Ursun;Animal Trainer, Entertainer, Initiate of Ursun, Pit Fighter, Soldier
+23;Black Guard;Advanced;Warriors;Knight, Priest, Sergeant, Squire, Vampire Hunter, Witch Hunter;Captain, Champion, Priest, Knight of the Inner Circle, Knight of the Raven, Vampire Hunter
+24;Boatman;Basic;Commoners;Ferryman, Smuggler;Fisherman, Marine, Navigator, Seaman, Smuggler
+25;Bodyguard;Basic;Warriors;Estalian Diestro, Jailer, Mercenary, Thug;Bailiff, Bounty Hunter, Interrogator, Jailer, Mercenary, Protagonist, Racketeer
+26;Bondsman;Basic;Warriors;Berserker, Mercenary, Pit Fighter;Berserker, Bodyguard, Freeholder, Marauder, Mercenary, Reaver, Skald, Veteratn, Warleader
+27;Bonepicker;Basic;Commoners;Peasant, Rat Catcher, Vagabond;Camp Folower, Cat Burglar, Fence, Grave Robber, Smuggler
+28;Border Courtier;Advanced;Criminals;Captain, Courtier, Noble, Outlaw Chief, Politician, Sergeant;Assassin, Captain, Courtier, Noble Lord, Spy
+29;Bounty Hunter;Basic;Warriors;Bodyguard, Fieldwarden, Hunter, Kislevite Kossar, Mercenary, Pit Fighter;Mercenary, Protagonist, Scout, Targeteer, Vampire Hunter
+30;Burgher;Basic;Commoners;Innkeeper, Servant;Agitator, Fence, Innkeeper, Merchant, Militiaman, Tradesman, Valet
+31;Cated;Basic;Warriors;Estalian Diestro, Mercenary, Militiaman, Noble, Roadwarden, Soldier, Squire, Student;Herald, Mercenary, Pistolier, Sergeant, Squire, Student
+32;Camp Follower;Basic;Commoners;Bone Picker, Servant;Charcoal-Burner, Charlatan, Servant, Smuggler, Spy, Tradesman, Vagabond
+33;Cantor;Advanced;Academics;Anointed Priest, Entertainer, High Priest, Initiate, Minstrel, Monk, Priest;Catechist, Entertainer, Initiate, Priest, Minstrel, Zealot
+34;Captain;Advanced;Warriors;Explorer, Ghost Strider, Knight, Knight of the Inner Circle, Noble Lord, Outlaw Chief, Sergeant, Witch Hunter;Agitator, Explorer, Merchant, Outlaw Chief, Politician
+35;Carcassonne Shepherd;Basic;Commoners;Grail Pilgrim, Hunter, Outlaw, Outrider, Peasant, Woodsman, Vagabond;Grail Pilgrim, Herrimault, Outlaw, Scout, Vagabond, Veteran
+36;Cartographer;Basic;Commoners;Coachman, Messenger, Navigator, Scout, Scribe, Student, Tradesman;Artisan, Explorer, Forger, Navigator, Scholar, Scribe, Vagabond
+37;Cat Burglar;Advanced;Criminals;Bone Picker, Charlatan, Chimneysweep, Ex-Convict, Grave Robber, Rat Catcher, Thief;Crime Lord, Fence, Master Thief, Racketeer, Vagabond
+38;Catechist;Advanced;Academics;Anointed Priest, Dilettante, Friar, Priest, Scholar, Scribe, Student, Zealor;Demagogue, Friar, Initiate, Scholar, Zealot
+39;Cenobite;Basic;Academics; ;Mystic, Outlaw, Servant, Vagabond
+40;Champion;Advanced;Warriors;Assassin, Duellist, Judicial Champion, Knight of the Inner Circle, Targeteer, Veteran, Witch Hunter;Assassin, Scout, Sergeant, Witch Hunter
+41;Charcoal Burner;Basic;Rangers;Camp Follower, Hunter, Miner, Peasant;Hunter, Miner, Scout, Vagabond, Woodsman
+42;Charlatan;Advanced;Criminals;Agitator, Camp Follower, Courtier, Filettante, Entertainer, Envoy, Ex-Convict, Fence, Hedge Wizard, Jouneyman Wizard, Minstrel, Rapscallion, Rogue, Smuggler, Thief;Cat Burglar, Demagogue, Outlaw, Politician, Spy
+43;Chekist;Basic;Warriors;Kossar, Protagonist, Streltsi, Thug, Watchman;Jailer, Interrogator, Mercenary, Racketeer, Sergeant, Soldier, Spy, Veteran, Watchman
+44;Chimneysweep;Basic;Commoners;Charcoal Burner, Miner, Peasan, Rogue, Thief;Cat Burglar, Mercenary, Militiaman, Protagonist, Rat Catcher
+45;Cloaked Brother;Advanced;Criminals;Assassin, Courtier, Crime Lord, Demagogue, Friar, Master Thief, Politician, Scout, Spy, Veteran, Witch Hunter;Assassin, Charlatan, Crime Lord, Demagogue, Master Thief, Politician, Scout, Spy, Veteran, Witch Hunter
+46;Coachman;Basic;Rangers;Outrider, Messenger;Cartographer, Ferryman, Highwayman, Outlaw, Roadwarden, Scout, Smuggler, Toll Keeper
+47;Courtier;Advanced;Academics;Dilettante, Noble, Herald, Pistolier, Politician;Charlatan, Duellist, Noble Lord, Politician, Steward, Spy
+48;Crime Lord;Advanced;Criminals;Cat Burglar, Demagogue, Fence, Guild Master, Master Thief, Outlaw Chief, Politician, Steward;Demagogue, Master Thief, Outlaw Chief, Politician
+49;Crusader;Advanced;Warriors;Knight, Noble Lord, sergeant, Veteran;Captain, Judicial Champion, Explorer, Initiate, Knight of the Inner Circle, Noble Lord, Veteran
+50;Cult Attendant;Advanced;Academics;Anointed Priest, Courtier, Initiate, Messenger, Priest, Valet;Politician, Priest, Squire, Steward
