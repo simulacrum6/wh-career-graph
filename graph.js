@@ -50,9 +50,13 @@ function GraphFactory() {
     }
 
     function addDirectedEdge(from, to, weight = 1) {
-        this.edgeList[from].push(to);
-        this.edgeWeights[from].push(weight);
-        this.edgeCount++;
+        if (this.edgeList[from] !== undefined) {
+            this.edgeList[from].push(to);
+            this.edgeWeights[from].push(weight);
+            this.edgeCount++;
+        } else {
+            console.warn('Vertex not in graph: ' + from)
+        }
     }
 
     function addUndirectedEdge(vertex1, vertex2, weight = 1) {
@@ -88,7 +92,7 @@ function GraphFactory() {
         this.edgeList = [];
         this.edgeWeights = [];
 
-        for (var i = 0; i < this.vertices; i++) {
+        for (var i = 0; i <= this.vertices; i++) {
             this.edgeList[i] = [];
             this.edgeWeights[i] = [];
         }
