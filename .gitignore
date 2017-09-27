@@ -1,0 +1,3 @@
+data/*
+!data/convert_data.py
+!data/careers.csv
