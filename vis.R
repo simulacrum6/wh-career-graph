@@ -7,7 +7,7 @@ types <- c(1:2)
 names(types) <- c('Basic', 'Advanced')
 
 
-nodes <- read.csv('nodes.csv', as.is = TRUE)
+nodes <- read.csv('data/nodes.csv', as.is = TRUE)
     nodes$label <- nodes$career
     nodes$group <- nodes$roles
     nodes$color <- c('#2E86AB', '#FE7F2D', '#A23B72', '#eddfce', 'C5D86D')[roles[nodes$role]]

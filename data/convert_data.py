@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 import networkx as nx
+import os.path as path
 
-nodes = pd.read_csv('data.csv', sep=';')
+nodes = pd.read_csv('careers.csv', sep=';')
+nodes['label'] = nodes['career']
 
 id_name = {index:name for index,name in zip(nodes.id,nodes.career)}
 name_id = {name:index for index,name in zip(nodes.id,nodes.career)}
@@ -20,8 +22,11 @@ for i,row in nodes.iterrows():
             edgelist_name.add((name, e))
 
 pd.DataFrame(list(edgelist_index), columns=['from','to']).to_csv('edgelist_index.csv', index=False)
+pd.DataFrame(list(edgelist_index), columns=['from','to']).to_json('edgelist_index.json', orient='records')
 pd.DataFrame(list(edgelist_name), columns=['from','to']).to_csv('edgelist_name.csv', index=False)
+
 nodes[['id', 'career', 'type', 'role']].to_csv('nodes.csv', index=False)
+nodes[['id', 'label', 'career', 'type', 'role']].to_json('nodes.json', orient='records')
 
 basic_filter = [
     'Agitator',
