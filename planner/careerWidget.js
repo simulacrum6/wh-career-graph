@@ -20,12 +20,18 @@ var options = {
             }} 
     },
     edges: {
-        arrows: 'to',
+        arrows: {
+            to: true,
+            middle: false
+        },
+        arrowStrikethrough: false,
         color: '#aaa',
+        dashes: true,
         chosen: {
             edge: function(values, id, selected, hovering) {
                 values.width = 3;
                 values.color = '#555555';
+                values.dashes = false;
             }
         }
     },
