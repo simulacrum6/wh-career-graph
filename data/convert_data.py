@@ -32,12 +32,12 @@ for i,row in nodes.iterrows():
     index = row['id']
     for e in exits:
         if name_id.get(e, False):
-            edgelist_index.add((index, name_id[e]))
-            edgelist_name.add((name, e))
+            edgelist_index.add((index, name_id[e], 1, '{0}--{1}'.format(index, name_id[e])))
+            edgelist_name.add((name, e, 1, '{0}--{1}'.format(name, e)))
 
-pd.DataFrame(list(edgelist_index), columns=['from','to']).to_csv('edgelist_index.csv', index=False)
-pd.DataFrame(list(edgelist_index), columns=['from','to']).to_json('edgelist_index.json', orient='records')
-pd.DataFrame(list(edgelist_name), columns=['from','to']).to_csv('edgelist_name.csv', index=False)
+pd.DataFrame(list(edgelist_index), columns=['from','to', 'weight', 'id']).to_csv('edgelist_index.csv', index=False)
+pd.DataFrame(list(edgelist_index), columns=['from','to', 'weight', 'id']).to_json('edgelist_index.json', orient='records')
+pd.DataFrame(list(edgelist_name), columns=['from','to', 'weight', 'id']).to_csv('edgelist_name.csv', index=False)
 
 nodes[['id', 'career', 'type', 'role']].to_csv('nodes.csv', index=False)
 nodes[['id', 'label', 'color', 'shape', 'career', 'type', 'role']].to_json('nodes.json', orient='records')
