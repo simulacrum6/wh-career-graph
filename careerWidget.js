@@ -12,14 +12,33 @@ var dataset = {
 var options = {
     nodes: {
         shadow: true,
-        chosen: {node: function(values, id, selected, hovering) {values.size = values.size * 1.66}} 
+        chosen: {
+            node: function(values, id, selected, hovering) {
+                values.size = values.size * 1.66;
+                values.borderColor = '#000000';
+                values.borderWidth = 2;
+            }} 
     },
     edges: {
         arrows: 'to',
-        color: '#aaa'
+        color: {
+            color: '#aaa',
+            opacity: 0.85},
+        chosen: {
+            edge: function(values, id, selected, hovering) {
+                values.width = 2;
+                values.color = '#00000';
+                values.opacity = 1.0;
+            }
+        }
     }
 }
 var container = document.getElementById('widget')
+var pathdisplay = document.getElementById('pathdisplay')
+var pathStrings = {
+    path: 'The fastest path for your selection is: ',
+    nopath: 'There is no career path between the chosen career options. :('
+}
 
 var network = new vis.Network(container, dataset, options)
 network.on('stabilized', function() {
@@ -28,14 +47,16 @@ network.on('stabilized', function() {
     })
 })
 
-var vertices = nodes.map(node => node.label)
-var graph = new GraphFactory().createDirectedGraph(vertices, edges)
+var careers = nodes.map(node => node.label)
+var careerIndex = {}
+nodes.forEach(node => careerIndex[node.label] = node.id)
+var graph = new GraphFactory().createDirectedGraph(careers, edges)
 var searcher = new GraphSearcher(graph)
 
 function selectPath(start, target) {
-    var path = searcher.getPath(start, target)
-    console.log(path)
+    var path = searcher.getPath(start, target).reverse()
+    var pathCareers = path.map(id => careers[id])
+    pathdisplay.innerText = path.length > 0 ? pathStrings.path + pathCareers : pathStrings.nopath
     network.selectNodes(path, true)
-    network.focus(start)
     network.fit({nodes: path, animation: true})
 }
