@@ -88,7 +88,7 @@ function GraphFactory() {
         this.edgeList = [];
         this.edgeWeights = [];
 
-        for (var i = 0; i <= this.vertices; i++) {
+        for (var i = 0; i < this.vertices; i++) {
             this.edgeList[i] = [];
             this.edgeWeights[i] = [];
         }
