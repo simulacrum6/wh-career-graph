@@ -74,7 +74,7 @@ network.on('selectNode', function(e) {
             selectedNodes.push(node)
     })
     if (selectedNodes.length > 1) {
-        findPath(selectedNodes[0], selectedNodes[selectedNodes.length - 1])
+        findCareerPath(selectedNodes[0], selectedNodes[selectedNodes.length - 1])
     }
 })
 network.on('deselectNode', function(e) {
@@ -90,43 +90,52 @@ network.on('deselectNode', function(e) {
 })
 
 var careers = nodes.map(node => node.label)
-var careerIndex = {}
-nodes.forEach(node => careerIndex[node.label] = node.id)
+var careerIndex = function makeCareerIndex() {
+    var index = {}
+    nodes.forEach(node => index[node.label] = node.id)
+    return index
+}
+
 var graph = new GraphFactory().createDirectedGraph(careers, edges)
 var searcher = new GraphSearcher(graph)
 
-function maxAdvances(selection) {
-    var stats = ['weapon skill', 'ballistic skill', 'strength', 'toughness', 'agility', 'intelligence', 'will power', 'fellowship', 'attacks', 'wounds', 'magic']
+function maxStats(selection) {
+    var stats = [
+        'weapon skill', 'ballistic skill', 'strength', 
+        'toughness', 'agility', 'intelligence', 
+        'will power', 'fellowship', 'attacks', 
+        'wounds', 'magic'
+    ]
     var combinedStats = {}
     stats.forEach(stat => {
-        var values = selectedNodes.map(x => dataset.nodes.get(x)[stat])
+        var values = selection.map(x => dataset.nodes.get(x)[stat])
         combinedStats[stat] = values.reduce((a,b) => Math.max(a,b))
     })
     return combinedStats
 }
 
-function updateStatDisplay(stats) {
-    var display = 'You need to level the following Stats: '
+function statDisplayString(stats) {
+    var display = 'Your final stats will be: '
     for (stat in stats) {
         display += stat + ':' + stats[stat] + ' '
     }
-    statDisplay.innerText = display
+    return display
 }
 
-function findPath(start, target) {
-    var pathStrings = {
-        path: 'The fastest path for your selection is: ',
-        nopath: 'There is no career path between the chosen career options. :('
-    }
+function pathDisplayString(path) {
+    var pathString = path.length > 0 ? 'The fastest path for your selection is: ' : 'There is no career path between the chosen career options. :(' 
+    var pathCareers = path.map(id => careers[id])
+    return pathString + pathCareers
+}
+
+function findCareerPath(start, target) {
     var path = searcher.getPath(start, target, directed = false).reverse()
     network.selectNodes(path, true)
     network.fit({nodes: path, animation: true})
+    pathDisplay.innerText = pathDisplayString(path)
     if (path.length > 0) {
-        var pathCareers = path.map(id => careers[id])
-        pathDisplay.innerText = pathStrings.path + pathCareers
-        updateStatDisplay(maxAdvances(path))
+        statDisplay.innerText = statDisplayString(maxStats(path))
     } else {
-        pathDisplay.innerText = pathStrings.nopath
         selectedNodes.pop()
         network.unselectAll()
         network.selectNodes(selectedNodes, true)
