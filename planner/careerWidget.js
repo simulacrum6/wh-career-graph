@@ -9,6 +9,8 @@ var dataset = {
     edges: new vis.DataSet(edges)
 }
 var options = {
+    height: '100%',
+    width: '100%',
     nodes: {
         shadow: false,
         chosen: {
@@ -58,8 +60,34 @@ var options = {
     }
 }
 var container = document.getElementById('widget')
-var pathDisplay = document.getElementById('path-display')
-var statDisplay = document.getElementById('stat-display')
+//var pathDisplay = document.getElementById('path-display')
+//var statDisplay = document.getElementById('stat-display')
+var pathDisplay = $('#path-display')
+var statDisplay = $('#stat-display')
+var primaryStats = $('#primary-stats').children('td')
+var secondaryStats = $('#secondary-stats').children('td')
+var pathField = $('#path')
+var pathFound = $('#path-found')
+var noPathFound = $('#no-path-found')
+var talents = $('#talents')
+var skills = $('#skills')
+var statIndex = {
+    primary: [
+        'weapon skill', 
+        'ballistic skill', 
+        'strength', 
+        'toughness', 
+        'agility', 
+        'intelligence', 
+        'will power', 
+        'fellowship'
+    ],
+    secondary: [
+        'attacks', 
+        'wounds', 
+        'magic'
+    ]
+}
 var selectedNodes = []
 
 var network = new vis.Network(container, dataset, options)
@@ -100,6 +128,7 @@ var graph = new GraphFactory().createDirectedGraph(careers, edges)
 var searcher = new GraphSearcher(graph)
 
 function maxStats(selection) {
+    selection = selection.length > 0 ? selection : [selectedNodes[0]]
     var stats = [
         'weapon skill', 'ballistic skill', 'strength', 
         'toughness', 'agility', 'intelligence', 
@@ -110,43 +139,83 @@ function maxStats(selection) {
     var combinedStats = {}
     stats.forEach(stat => {
         var values = selection.map(x => dataset.nodes.get(x)[stat])
-        combinedStats[stat] = values.reduce((a,b) => Math.max(a,b))
+        if (values.length > 0)
+            combinedStats[stat] = values.reduce((a,b) => Math.max(a,b))
+        else 
+            combinedStats[stat] = 0
     })
     props.forEach(prop => {
         var values = selection.map(x => dataset.nodes.get(x)[prop])
         values = [].concat.apply([],values)
         var uniques = new Set(values)
         values = []
-        uniques.forEach(x => values.push(x))         
+        uniques.forEach(x => values.push(x))    
         combinedStats[prop] = values
     })
     return combinedStats
 }
 
-function statDisplayString(stats) {
-    var display = 'Your final stats will be: '
-    for (stat in stats) {
-        display += stat + ':' + stats[stat] + ' '
-    }
-    return display
+function updatePrimaryStats(stats) {
+    for (var i in statIndex.primary) {
+        var stat = statIndex.primary[i]
+        primaryStats.eq(i).text(stats[stat])
+    }    
 }
 
-function pathDisplayString(path) {
-    var pathString = path.length > 0 ? 'The fastest path for your selection is: ' : 'There is no career path between the chosen career options. :(' 
-    var pathCareers = path.map(id => careers[id])
-    return pathString + pathCareers
+function updateSecondaryStats(stats) {
+    for (var i in statIndex.secondary) {
+        var stat = statIndex.secondary[i]
+        secondaryStats.eq(i).text(stats[stat])
+    }
+}
+
+function updateTalents(stats) {
+    talents.text(stats['talents'])
+}
+
+function updateSkills(stats) {
+    skills.text(stats['skills'])
+}
+
+function updatePathDisplay(path) {
+    if (path.length > 0) {
+        var pathNames = path.map(x => dataset.nodes.get(x).career)
+        pathField.text(pathNames)
+        pathFound.show()
+        noPathFound.hide()
+    } else {
+        noPathFound.show()
+        pathFound.hide()
+    }    
 }
 
 function findCareerPath(start, target) {
     var path = searcher.getPath(start, target, directed = false).reverse()
-    network.selectNodes(path, true)
     network.fit({nodes: path, animation: true})
-    pathDisplay.innerText = pathDisplayString(path)
+    updatePathDisplay(path)
     if (path.length > 0) {
-        statDisplay.innerText = statDisplayString(maxStats(path))
+        network.selectNodes(path, true)
+        var pathStats = maxStats(path)
+        updatePrimaryStats(pathStats)
+        updateSecondaryStats(pathStats)
+        updateTalents(pathStats)
+        updateSkills(pathStats)
+        pathDisplay.addClass('alert-success')
+        pathDisplay.removeClass('alert-warning')
     } else {
         selectedNodes.pop()
         network.unselectAll()
         network.selectNodes(selectedNodes, true)
+        pathDisplay.addClass('alert-warning')
+        pathDisplay.removeClass('alert-success')
     }
 }
+
+function init() {
+    pathFound.hide()
+    noPathFound.hide()
+}
+
+$(function(){
+    init()
+})
