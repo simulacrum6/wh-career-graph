@@ -60,8 +60,6 @@ var options = {
     }
 }
 var container = document.getElementById('widget')
-//var pathDisplay = document.getElementById('path-display')
-//var statDisplay = document.getElementById('stat-display')
 var pathDisplay = $('#path-display')
 var statDisplay = $('#stat-display')
 var primaryStats = $('#primary-stats').children('td')
@@ -101,7 +99,12 @@ var network = new vis.Network(container, dataset, options)
             if (!selectedNodes.includes(node)) 
                 selectedNodes.push(node)
         })
-        if (selectedNodes.length > 1) {
+        if (selectedNodes.length === 1) {
+            var stats = getStats(selectedNodes)
+            updatePathDisplay(selectedNodes)
+            updateStatDisplays(stats)
+        }
+        else if (selectedNodes.length > 1) {
             findCareerPath(selectedNodes[0], selectedNodes[selectedNodes.length - 1])
         }
     })
@@ -115,19 +118,29 @@ var network = new vis.Network(container, dataset, options)
                 }
             })
         }
+        if (selectedNodes.length === 1) {
+            var stats = getStats(selectedNodes)
+            updatePathDisplay(selectedNodes)
+            updateStatDisplays(stats)
+        }
+        else if (selectedNodes.length > 1) {
+            findCareerPath(selectedNodes[0], selectedNodes[selectedNodes.length - 1])
+        }
     })
 
-var careers = nodes.map(node => node.label)
-var careerIndex = function makeCareerIndex() {
-    var index = {}
-    nodes.forEach(node => index[node.label] = node.id)
+function makeCareerIndex() {
+    var index = new Map()
+    nodes.forEach(node => index.set(node.label, node.id))
     return index
 }
+var careers = nodes.map(node => node.label)
+var careerIndex = makeCareerIndex()
+
 
 var graph = new GraphFactory().createDirectedGraph(careers, edges)
 var searcher = new GraphSearcher(graph)
 
-function maxStats(selection) {
+function getStats(selection) {
     selection = selection.length > 0 ? selection : [selectedNodes[0]]
     var stats = [
         'weapon skill', 'ballistic skill', 'strength', 
@@ -161,25 +174,24 @@ function updatePrimaryStats(stats) {
         primaryStats.eq(i).text(stats[stat])
     }    
 }
-
 function updateSecondaryStats(stats) {
     for (var i in statIndex.secondary) {
         var stat = statIndex.secondary[i]
         secondaryStats.eq(i).text(stats[stat])
     }
 }
-
 function updateTalents(stats) {
     talents.text(stats['talents'])
 }
-
 function updateSkills(stats) {
     skills.text(stats['skills'])
 }
-
 function updatePathDisplay(path) {
-    if (path.length > 0) {
-        var pathNames = path.map(x => dataset.nodes.get(x).career)
+    if (path.length === 1) {
+        noPathFound.hide()
+        pathFound.hide()
+    } else if (path.length > 1) {
+        var pathNames = path.map(x => careers[x])
         pathField.text(pathNames)
         pathFound.show()
         noPathFound.hide()
@@ -188,6 +200,12 @@ function updatePathDisplay(path) {
         pathFound.hide()
     }    
 }
+function updateStatDisplays(stats) {
+    updatePrimaryStats(stats)
+    updateSecondaryStats(stats)
+    updateTalents(stats)
+    updateSkills(stats)
+}
 
 function findCareerPath(start, target) {
     var path = searcher.getPath(start, target, directed = false).reverse()
@@ -195,19 +213,15 @@ function findCareerPath(start, target) {
     updatePathDisplay(path)
     if (path.length > 0) {
         network.selectNodes(path, true)
-        var pathStats = maxStats(path)
-        updatePrimaryStats(pathStats)
-        updateSecondaryStats(pathStats)
-        updateTalents(pathStats)
-        updateSkills(pathStats)
-        pathDisplay.addClass('alert-success')
-        pathDisplay.removeClass('alert-warning')
+        selectedNodes = path
+        var stats = getStats(path)
+        updateStatDisplays(stats)
     } else {
         selectedNodes.pop()
+        var stats = getStats(selectedNodes)
+        updateStatDisplays(stats)
         network.unselectAll()
         network.selectNodes(selectedNodes, true)
-        pathDisplay.addClass('alert-warning')
-        pathDisplay.removeClass('alert-success')
     }
 }
 
