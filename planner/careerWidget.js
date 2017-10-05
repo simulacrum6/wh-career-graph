@@ -69,6 +69,7 @@ var pathFound = $('#path-found')
 var noPathFound = $('#no-path-found')
 var talents = $('#talents')
 var skills = $('#skills')
+var currentSelection = $('#selection')
 var statIndex = {
     primary: [
         'weapon skill', 
@@ -186,12 +187,22 @@ function updateTalents(stats) {
 function updateSkills(stats) {
     skills.text(stats['skills'])
 }
+function updateStatDisplays(stats) {
+    updatePrimaryStats(stats)
+    updateSecondaryStats(stats)
+    updateTalents(stats)
+    updateSkills(stats)
+}
+function updateSelection(selection) {
+    currentSelection.text(selectedNodes)
+}
 function updatePathDisplay(path) {
+    var pathNames = path.map(x => careers[x])
+    currentSelection.text(pathNames)
     if (path.length === 1) {
         noPathFound.hide()
         pathFound.hide()
     } else if (path.length > 1) {
-        var pathNames = path.map(x => careers[x])
         pathField.text(pathNames)
         pathFound.show()
         noPathFound.hide()
@@ -200,12 +211,8 @@ function updatePathDisplay(path) {
         pathFound.hide()
     }    
 }
-function updateStatDisplays(stats) {
-    updatePrimaryStats(stats)
-    updateSecondaryStats(stats)
-    updateTalents(stats)
-    updateSkills(stats)
-}
+
+
 
 function findCareerPath(start, target) {
     var path = searcher.getPath(start, target, directed = false).reverse()
@@ -218,6 +225,7 @@ function findCareerPath(start, target) {
         updateStatDisplays(stats)
     } else {
         selectedNodes.pop()
+        currentSelection.text(selectedNodes.map(nodeId => careers[nodeId]))
         var stats = getStats(selectedNodes)
         updateStatDisplays(stats)
         network.unselectAll()
