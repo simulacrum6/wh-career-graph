@@ -13,3 +13,9 @@ role -- Academics, Commoners, Criminals, Rangers, Warriors
 ## Edges
 
 from;to
+
+# TODO:
+Fix stats
+Fix edgeselection
+Fix colors
+Fix broken careers
