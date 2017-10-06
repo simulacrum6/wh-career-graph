@@ -233,7 +233,7 @@ function updateView(selection) {
         network.selectNodes(selection, false)
         network.selectEdges(pathEdges)
         network.setSelection({nodes: selection, edges: pathEdges})
-        network.fit({nodes: selection, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
+        network.fit({nodes: path, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
         
         updateSelectionDisplay(selection)
         updateStatDisplays(stats)

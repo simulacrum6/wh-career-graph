@@ -15,8 +15,7 @@ body{
 }
 
 .text-display {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
     overflow: auto;
     word-wrap: break-word;
 }
@@ -30,5 +29,13 @@ body{
 #stat-display {
     position: fixed;
     background-color: rgba(255,255,255,0.7);
-    max-width: 30%;
+    max-width: 25%;
+}
+
+#search-field {
+    position: sticky;
+}
+
+h4 {
+    font-weight: 500
 }
