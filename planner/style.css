@@ -30,5 +30,5 @@ body{
 #stat-display {
     position: fixed;
     background-color: rgba(255,255,255,0.7);
-    max-width: 25%;
+    max-width: 30%;
 }

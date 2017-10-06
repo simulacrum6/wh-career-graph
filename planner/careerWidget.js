@@ -5,7 +5,7 @@ nodes.forEach(function(node) {
     node['y'] = node['y'] * canvas_height
 })
 // used to restore original state after modification
-var backup_nodes = new vis.DataSet(nodes)
+var backupNodes = new vis.DataSet(nodes)
 var dataset = {
     nodes: new vis.DataSet(nodes),
     edges: new vis.DataSet(edges)
@@ -32,13 +32,17 @@ var options = {
             to: true
         },
         arrowStrikethrough: false,
-        color: '#aaa',
+        color: {
+            color: '#aaa',
+            opacity: 0.33
+        },
         dashes: true,
         chosen: {
             edge: function(values, id, selected, hovering) {
-                values.width = 3;
+                values.width = 4;
                 values.color = '#555555';
                 values.dashes = false;
+                values.opacity = 1.0;
             }
         }
     },
@@ -77,34 +81,20 @@ var skills = $('#skills')
 var currentSelection = $('#selection')
 var statIndex = {
     primary: [
-        'WS', 
-        'BS', 
-        'S', 
-        'T', 
-        'Ag', 
-        'Int', 
-        'WP', 
-        'Fel'
+        'WS', 'BS', 'S', 'T', 'Ag', 'Int', 'WP', 'Fel'
     ],
     secondary: [
-        'A', 
-        'W',
-        'SB',
-        'TB',
-        'M', 
-        'Mag',
-        'IP',
-        'FP'
+        'A', 'W', 'SB', 'TB', 'M', 'Mag', 'IP', 'FP'
     ]
+}
+defaultStats = {
+    'WS': 0, 'BS': 0, 'S': 0, 'T': 0, 'Ag': 0, 'Int': 0, 'WP': 0, 'Fel': 0,
+    'A': 0, 'W': 0, 'SB': 0, 'TB': 0, 'M':0, 'Mag':0, 'IP':0, 'FP':0, 
+    'Talents': ['None'], 'Skills': ['None']
 }
 var selectedNodes = []
 
 var network = new vis.Network(container, dataset, options)
-    network.on('stabilized', function() {
-        network.setOptions({
-            edges: {physics: true}
-        })
-    })
     network.on('selectNode', function(e) {
         e.nodes.forEach(node => {
             if (!selectedNodes.includes(node)) 
@@ -129,7 +119,12 @@ var network = new vis.Network(container, dataset, options)
                 }
             })
         }
-        if (selectedNodes.length === 1) {
+        if (selectedNodes.length == 0) {
+            var stats = defaultStats
+            updatePathDisplay(selectedNodes)
+            updateStatDisplays(stats)
+        }
+        else if (selectedNodes.length === 1) {
             var stats = getStats(selectedNodes)
             updatePathDisplay(selectedNodes)
             updateStatDisplays(stats)
@@ -154,17 +149,9 @@ var searcher = new GraphSearcher(graph)
 function getStats(selection) {
     selection = selection.length > 0 ? selection : [selectedNodes[0]]
     var stats = [
-        'WS', 'BS', 'S', 
-        'T', 'Ag', 'Int', 
-        'WP', 'Fel', 'A', 
-        'W', 'Mag'
+        'WS', 'BS', 'S', 'T', 'Ag', 'Int', 'WP', 'Fel',
+        'A', 'W', 'SB', 'TB', 'M', 'Mag', 'IP', 'FP'
     ]
-    /*var stats = [
-        'weapon skill', 'ballistic skill', 'strength', 
-        'toughness', 'agility', 'intelligence', 
-        'will power', 'fellowship', 'attacks', 
-        'wounds', 'magic'
-    ]*/
     var props = ['Skills', 'Talents']
     var combinedStats = {}
     stats.forEach(stat => {
@@ -210,7 +197,7 @@ function updateStatDisplays(stats) {
     updateSkills(stats)
 }
 function updateSelection(selection) {
-    currentSelection.text(selectedNodes)
+    currentSelection.text(selection)
 }
 function updatePathDisplay(path) {
     var pathNames = path.map(x => careers[x])
@@ -223,7 +210,8 @@ function updatePathDisplay(path) {
         pathFound.show()
         noPathFound.hide()
     } else {
-        noPathFound.show()
+        currentSelection.text('None')
+        noPathFound.hide()
         pathFound.hide()
     }    
 }
@@ -238,21 +226,27 @@ function getPathEdges(path) {
 
 function findCareerPath(start, target) {
     var path = searcher.getPath(start, target, directed = false).reverse()
-    network.fit({nodes: path, animation: true})
+    network.fit({nodes: path, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
     updatePathDisplay(path)
     if (path.length > 0) {
-        network.selectNodes(path, false)
-        network.selectEdges(getPathEdges(path))
-        selectedNodes = path
         var stats = getStats(path)
+        var pathEdges = getPathEdges(path)
+        network.selectNodes(path, false)
+        network.selectEdges(pathEdges)
+        network.setSelection({nodes: path, edges: pathEdges})
+        selectedNodes = path
+        updatePathDisplay(path)
         updateStatDisplays(stats)
     } else {
         selectedNodes.pop()
-        currentSelection.text(selectedNodes.map(nodeId => careers[nodeId]))
         var stats = getStats(selectedNodes)
+        var pathEdges = getPathEdges(selectedNodes)
+        updatePathDisplay(selectedNodes)
         updateStatDisplays(stats)
         network.unselectAll()
-        network.selectNodes(selectedNodes, true)
+        network.selectNodes(selectedNodes, false)
+        network.selectEdges(pathEdges)
+        network.setSelection({nodes: selectedNodes, edges: pathEdges})
     }
 }
 
