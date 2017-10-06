@@ -183,28 +183,7 @@ function getPathEdges(path) {
     return edges
 }
 function findCareerPath(start, target) {
-    var path = searcher.getPath(start, target, directed = false).reverse()
-    network.fit({nodes: path, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
-    updatePathDisplay(path)
-    if (path.length > 0) {
-        var stats = getStats(path)
-        var pathEdges = getPathEdges(path)
-        network.selectNodes(path, false)
-        network.selectEdges(pathEdges)
-        network.setSelection({nodes: path, edges: pathEdges})
-        selectedNodes = path
-        updateSelectionDisplay(path)
-        updateStatDisplays(stats)
-    } else {
-        selectedNodes.pop()
-        var stats = getStats(selectedNodes)
-        var pathEdges = getPathEdges(selectedNodes)
-        updateSelectionDisplay(selectedNodes)
-        updateStatDisplays(stats)
-        network.selectNodes(selectedNodes, false)
-        network.selectEdges(pathEdges)
-        network.setSelection({nodes: selectedNodes, edges: pathEdges})
-    }
+    return searcher.getPath(start, target, directed = false).reverse()
 }
 function getSelectedNodes(oldSelection, newSelection, changeEvent) {
     if (newSelection.length < 2)
@@ -227,7 +206,7 @@ function getSelectedNodes(oldSelection, newSelection, changeEvent) {
         return result        
     }
 }
-function handleSelectionChange(selection) {
+function updateView(selection) {
     if (selection.length === 0) {
         var stats = defaultStats
         updateSelectionDisplay(selection)
@@ -241,7 +220,23 @@ function handleSelectionChange(selection) {
         updateStatDisplays(stats)
     }
     else if (selection.length > 1) {
-        findCareerPath(selection[0], selection[selection.length - 1])
+        var path = findCareerPath(selection[0], selection[selection.length - 1])
+        updatePathDisplay(path)
+        
+        if (path.length > 0)
+            selection = path
+        else
+            selection.pop()
+
+        var stats = getStats(selection)
+        var pathEdges = getPathEdges(selection)
+        network.selectNodes(selection, false)
+        network.selectEdges(pathEdges)
+        network.setSelection({nodes: selection, edges: pathEdges})
+        network.fit({nodes: selection, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
+        
+        updateSelectionDisplay(selection)
+        updateStatDisplays(stats)
     }
 }
 
@@ -250,11 +245,11 @@ function init() {
     noPathFound.hide()
     network.on('selectNode', function(e) {
         selectedNodes = getSelectedNodes(selectedNodes, e.nodes, 'select')
-        handleSelectionChange(selectedNodes)
+        updateView(selectedNodes)
     })
     network.on('deselectNode', function(e) {
         selectedNodes = getSelectedNodes(selectedNodes, e.nodes, 'deselect')
-        handleSelectionChange(selectedNodes)
+        updateView(selectedNodes)
     })
 }
 
