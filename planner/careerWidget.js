@@ -9,6 +9,8 @@ var skills = $('#skills')
 var pathField = $('#path')
 var pathFound = $('#path-found')
 var noPathFound = $('#no-path-found')
+var searchField = $('#single-career-search')
+var pathSearchFields = $('#career-path-search').children('input')
 
 var canvas_width = window.innerWidth * 1.66
 var canvas_height = window.innerHeight * 1.66
@@ -158,17 +160,16 @@ function updateStatDisplays(stats) {
     updateSkills(stats)
 }
 function updateSelectionDisplay(selection) {
-    var careerNames = selection.length > 0 ? selection.map(x => careers[x]) : 'None'
+    var careerNames = selection.length > 0 ? selection.map(x => careers[x]).join(', ') : 'None'
     selectionDisplay.text(careerNames)
 }
 function updatePathDisplay(path) {
     var pathNames = path.map(x => careers[x])
-    selectionDisplay.text(pathNames)
     if (path.length === 1) {
         noPathFound.hide()
         pathFound.hide()
     } else if (path.length > 1) {
-        pathField.text(pathNames)
+        pathField.text(pathNames.join(', '))
         pathFound.show()
         noPathFound.hide()
     } else {
@@ -239,6 +240,40 @@ function updateView(selection) {
         updateStatDisplays(stats)
     }
 }
+function searchCareer() {
+    var careerName = searchField.val()
+    var index = careerIndex.get(careerName, -1)
+    if (index > -1) {
+        network.fit({nodes: [index], animation: {duration: 225, easingFunction: 'easeInOutQuad'}})
+    } else {
+        noPathFound.show()
+    }
+}
+function searchPath() {
+    pathFound.hide()
+    noPathFound.hide()
+    var start = pathSearchFields.eq(0).val()
+    var end = pathSearchFields.eq(1).val()
+    start = careerIndex.get(start, false)
+    end = careerIndex.get(end, false)
+    if (start && end) {
+        var path = searcher.getPath(start, end).reverse()
+        updatePathDisplay(path)
+        network.fit({nodes: path, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
+        if (path.length > 0) {
+            selectedNodes = path
+            var stats = getStats(selectedNodes)
+            var pathEdges = getPathEdges(selectedNodes)
+            network.selectNodes(selectedNodes, false)
+            network.selectEdges(pathEdges)
+            network.setSelection({nodes: selectedNodes, edges: pathEdges})
+            updateSelectionDisplay(selectedNodes)
+            updateStatDisplays(stats)
+        }
+    } else {
+        noPathFound.show()
+    }
+}
 
 function init() {
     pathFound.hide()
@@ -251,6 +286,20 @@ function init() {
         selectedNodes = getSelectedNodes(selectedNodes, e.nodes, 'deselect')
         updateView(selectedNodes)
     })
+
+
+    var autoCompleteOptions = {
+        source: careers,
+        minLength: 2
+    };
+    $(document).on('keydown.autocomplete', 'input.career-search', function() {
+        $(this).autocomplete(autoCompleteOptions);
+    });
+    $("#single-career-search").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#single-career-search-btn").click();
+        }
+    });
 }
 
 $(function(){

@@ -32,7 +32,7 @@ body{
     max-width: 25%;
 }
 
-#search-field {
+.search-field {
     position: sticky;
 }
 

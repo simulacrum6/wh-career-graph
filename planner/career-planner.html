@@ -7,9 +7,11 @@
     <link rel='stylesheet' href='./visjs/vis.min.css'>
     <script src='./visjs/vis.min.js'></script>
     <script src='graph.js'></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel='stylesheet' href='style.css'>
 </head>
@@ -73,12 +75,21 @@
             <h4>Skills</h4><span id='skills'>none</span> <br/>
             <h4>Talents</h4><span id='talents'>none</span>
         </div>
-        <hr/>
-        <div id='search-field' class="input-group">
-            <input type="text" class="form-control" placeholder="Search for a career...">
+        <hr>
+        <div class="input-group search-field">
+            <input id='single-career-search' type="text" class="form-control career-search" placeholder="Search for a career...">
             <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    <button id='single-career-search-btn' class="btn btn-default" type="submit" onclick="searchCareer()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>
+        </div>
+        <hr>
+        <a data-toggle="collapse" data-target="#cps-wrapper"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a>
+        <div id='cps-wrapper' class='collapse'>
+            <div id='career-path-search' class="input-group search-field">
+                <input id='career-path-search-1' type="text" class="form-control career-search col-md-6" placeholder="Select a starting point...">
+                <input id='career-path-search-2' type="text" class="form-control career-search col-md-6" placeholder="And a destination...">
+                <button id='career-path-search-btn' class="btn btn-default col-md-12" type="submit" onclick="searchPath()"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Don't let your dreams be dreams!</button>
+            </div>
         </div>
     </div>
     <div id='path-display'>
