@@ -14,7 +14,7 @@ body{
     z-index: -1;
 }
 
-.text-display {
+.text-display { 
     padding: 15px;
     overflow: auto;
     word-wrap: break-word;
@@ -29,7 +29,7 @@ body{
 #stat-display {
     position: fixed;
     background-color: rgba(255,255,255,0.7);
-    max-width: 25%;
+    width: 400px;
 }
 
 .search-field {
@@ -38,4 +38,24 @@ body{
 
 h4 {
     font-weight: 500
+}
+
+#search-toggle {
+    text-align: center;
+}
+
+#single-career-search-field {
+    float: left;
+    width: 87.5%;
+}
+
+#career-path-search .career-search:first-child {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: none;
+}
+
+#career-path-search .career-search:last-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }

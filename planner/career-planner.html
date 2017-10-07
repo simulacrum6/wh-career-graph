@@ -76,20 +76,20 @@
             <h4>Talents</h4><span id='talents'>none</span>
         </div>
         <hr>
-        <div class="input-group search-field">
+        <div id='single-career-search-field' class='input-group search-field'>
             <input id='single-career-search' type="text" class="form-control career-search" placeholder="Search for a career...">
             <span class="input-group-btn">
                     <button id='single-career-search-btn' class="btn btn-default" type="submit" onclick="searchCareer()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>
         </div>
-        <hr>
-        <a data-toggle="collapse" data-target="#cps-wrapper"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a>
+        <div id='search-toggle'><a data-toggle="collapse" class='btn btn-default' data-target="#cps-wrapper"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a></div>
         <div id='cps-wrapper' class='collapse'>
-            <div id='career-path-search' class="input-group search-field">
-                <input id='career-path-search-1' type="text" class="form-control career-search col-md-6" placeholder="Select a starting point...">
-                <input id='career-path-search-2' type="text" class="form-control career-search col-md-6" placeholder="And a destination...">
-                <button id='career-path-search-btn' class="btn btn-default col-md-12" type="submit" onclick="searchPath()"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Don't let your dreams be dreams!</button>
+            <hr>
+            <div id='career-path-search' class="form-group search-field">
+                <input type="text" class="form-control career-search" placeholder="Select a starting point...">
+                <input type="text" class="form-control career-search" placeholder="And a destination...">
             </div>
+            <button id='career-path-search-btn' class="btn btn-success col-md-12" type="submit" onclick="searchPath()"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Don't let your dreams be dreams!</button>
         </div>
     </div>
     <div id='path-display'>
