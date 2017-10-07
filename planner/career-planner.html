@@ -20,7 +20,7 @@
     <div id='stat-display' class="text-display panel panel-default">
         <div>
             <h4>Selection</h4>
-            <p><strong><span id='selection'>none</span></strong></p>
+            <p><strong><span id='selection'>None</span></strong></p>
         </div>             
         <div id='primary-profile' class='table-responsive'>
             <table class='table'><h4>Primary Profile</h4>
@@ -72,14 +72,14 @@
         </div>
         <div id='skills-talents'>
             <br />
-            <h4>Skills</h4><span id='skills'>none</span> <br/>
-            <h4>Talents</h4><span id='talents'>none</span>
+            <h4>Skills</h4><span id='skills'>None</span> <br/>
+            <h4>Talents</h4><span id='talents'>None</span>
         </div>
         <hr>
         <div id='single-career-search-field' class='input-group search-field'>
             <input id='single-career-search' type="text" class="form-control career-search" placeholder="Search for a career...">
             <span class="input-group-btn">
-                    <button id='single-career-search-btn' class="btn btn-default" type="submit" onclick="searchCareer()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    <button id='single-career-search-btn' class="btn btn-default" type="submit" onclick="uiCareerSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>
         </div>
         <div id='search-toggle'><a data-toggle="collapse" class='btn btn-default' data-target="#cps-wrapper"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a></div>
@@ -89,7 +89,7 @@
                 <input type="text" class="form-control career-search" placeholder="Select a starting point...">
                 <input type="text" class="form-control career-search" placeholder="And a destination...">
             </div>
-            <button id='career-path-search-btn' class="btn btn-success col-md-12" type="submit" onclick="searchPath()"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Don't let your dreams be dreams!</button>
+            <button id='career-path-search-btn' class="btn btn-success col-md-12" type="submit" onclick="uiCareerPathSearch()"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Don't let your dreams be dreams!</button>
         </div>
     </div>
     <div id='path-display'>

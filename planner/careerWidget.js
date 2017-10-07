@@ -1,16 +1,16 @@
-var container = document.getElementById('widget')
+var widgetContainer = document.getElementById('widget')
 var pathDisplay = $('#path-display')
 var selectionDisplay = $('#selection')
 var statDisplay = $('#stat-display')
-var primaryStats = $('#primary-stats').children('td')
-var secondaryStats = $('#secondary-stats').children('td')
-var talents = $('#talents')
-var skills = $('#skills')
+var primaryProfileDisplay = $('#primary-stats').children('td')
+var secondaryProfileDisplay = $('#secondary-stats').children('td')
+var talentsDisplay = $('#talents')
+var skillsDisplay = $('#skills')
 var pathField = $('#path')
-var pathFound = $('#path-found')
-var noPathFound = $('#no-path-found')
-var searchField = $('#single-career-search')
-var pathSearchFields = $('#career-path-search').children('input')
+var pathFoundMessage = $('#path-found')
+var noPathFoundMessage = $('#no-path-found')
+var careerSearchField = $('#single-career-search')
+var careerPathSearchFields = $('#career-path-search').children('input')
 
 var canvas_width = window.innerWidth * 1.66
 var canvas_height = window.innerHeight * 1.66
@@ -82,7 +82,7 @@ var options = {
         }
     }
 }
-var network = new vis.Network(container, dataset, options)
+var network = new vis.Network(widgetContainer, dataset, options)
 
 var careers = nodes.map(node => node.label)
 var careerIndex = makeCareerIndex()
@@ -96,12 +96,12 @@ var statIndex = {
     ],
     secondary: [
         'A', 'W', 'SB', 'TB', 'M', 'Mag', 'IP', 'FP'
-    ]
-}
-defaultStats = {
-    'WS': 0, 'BS': 0, 'S': 0, 'T': 0, 'Ag': 0, 'Int': 0, 'WP': 0, 'Fel': 0,
-    'A': 0, 'W': 0, 'SB': 0, 'TB': 0, 'M':0, 'Mag':0, 'IP':0, 'FP':0, 
-    'Talents': ['None'], 'Skills': ['None']
+    ],
+    defaultStats: {
+        'WS': 0, 'BS': 0, 'S': 0, 'T': 0, 'Ag': 0, 'Int': 0, 'WP': 0, 'Fel': 0,
+        'A': 0, 'W': 0, 'SB': 0, 'TB': 0, 'M':0, 'Mag':0, 'IP':0, 'FP':0, 
+        'Talents': ['None'], 'Skills': ['None']
+    }
 }
 var selectedNodes = []
 
@@ -109,6 +109,27 @@ function makeCareerIndex() {
     var index = new Map()
     nodes.forEach(node => index.set(node.label, node.id))
     return index
+}
+function getSelection(oldSelection, newSelection, changeType) {
+    if (newSelection.length < 2)
+        return newSelection
+    
+    var selection = oldSelection.slice()
+    
+    if (changeType === 'select') {
+        newSelection.forEach(node => {
+            if (!selection.includes(node)) 
+                selection.push(node)
+        })
+        return selection
+    }
+    if (changeType === 'deselect') {
+        selection.forEach(node => {
+            if (!newSelection.includes(node))
+                selection.splice(selection.indexOf(node), 1)
+        })
+        return selection        
+    }
 }
 function getStats(selection) {
     selection = selection.length > 0 ? selection : [selectedNodes[0]]
@@ -135,47 +156,8 @@ function getStats(selection) {
     })
     return combinedStats
 }
-function updatePrimaryStats(stats) {
-    for (var i in statIndex.primary) {
-        var stat = statIndex.primary[i]
-        primaryStats.eq(i).text(stats[stat])
-    }    
-}
-function updateSecondaryStats(stats) {
-    for (var i in statIndex.secondary) {
-        var stat = statIndex.secondary[i]
-        secondaryStats.eq(i).text(stats[stat])
-    }
-}
-function updateTalents(stats) {
-    talents.text(stats['Talents'].join(', '))
-}
-function updateSkills(stats) {
-    skills.text(stats['Skills'].join(', '))
-}
-function updateStatDisplays(stats) {
-    updatePrimaryStats(stats)
-    updateSecondaryStats(stats)
-    updateTalents(stats)
-    updateSkills(stats)
-}
-function updateSelectionDisplay(selection) {
-    var careerNames = selection.length > 0 ? selection.map(x => careers[x]).join(', ') : 'None'
-    selectionDisplay.text(careerNames)
-}
-function updatePathDisplay(path) {
-    var pathNames = path.map(x => careers[x])
-    if (path.length === 1) {
-        noPathFound.hide()
-        pathFound.hide()
-    } else if (path.length > 1) {
-        pathField.text(pathNames.join(', '))
-        pathFound.show()
-        noPathFound.hide()
-    } else {
-        noPathFound.show()
-        pathFound.hide()
-    }    
+function getCareerPath(startCareer, targetCareer) {
+    return searcher.getPath(startCareer, targetCareer, directed = false).reverse()
 }
 function getPathEdges(path) {
     var edges = []
@@ -183,46 +165,65 @@ function getPathEdges(path) {
         edges.push(path[i-1].toString() + '--' + path[i].toString())
     return edges
 }
-function findCareerPath(start, target) {
-    return searcher.getPath(start, target, directed = false).reverse()
+function setPrimaryProfileDisplay(stats) {
+    for (var i in statIndex.primary) {
+        var stat = statIndex.primary[i]
+        primaryProfileDisplay.eq(i).text(stats[stat])
+    }    
 }
-function getSelectedNodes(oldSelection, newSelection, changeEvent) {
-    if (newSelection.length < 2)
-        return newSelection
-    
-    var result = oldSelection.slice()
-    
-    if (changeEvent === 'select') {
-        newSelection.forEach(node => {
-            if (!result.includes(node)) 
-                result.push(node)
-        })
-        return result
+function setSecondaryProfileDisplay(stats) {
+    for (var i in statIndex.secondary) {
+        var stat = statIndex.secondary[i]
+        secondaryProfileDisplay.eq(i).text(stats[stat])
     }
-    if (changeEvent === 'deselect') {
-        result.forEach(node => {
-            if (!newSelection.includes(node))
-                result.splice(result.indexOf(node), 1)
-        })
-        return result        
-    }
+}
+function setTalentsDisplay(stats) {
+    talentsDisplay.text(stats['Talents'].join(', '))
+}
+function setSkillsDisplay(stats) {
+    skillsDisplay.text(stats['Skills'].join(', '))
+}
+function setStatDisplays(stats) {
+    setPrimaryProfileDisplay(stats)
+    setSecondaryProfileDisplay(stats)
+    setTalentsDisplay(stats)
+    setSkillsDisplay(stats)
+}
+function setSelectionDisplay(selection) {
+    var careerNames = selection.length > 0 ? selection.map(x => careers[x]).join(', ') : 'None'
+    selectionDisplay.text(careerNames)
+}
+function setPathDisplay(path) {
+    var pathNames = path.map(x => careers[x])
+    if (path.length === 1) {
+        noPathFoundMessage.hide()
+        pathFoundMessage.hide()
+    } else if (path.length > 1) {
+        pathField.text(pathNames.join(', '))
+        pathFoundMessage.show()
+        noPathFoundMessage.hide()
+    } else {
+        noPathFoundMessage.show()
+        pathFoundMessage.hide()
+    }    
 }
 function updateView(selection) {
     if (selection.length === 0) {
-        var stats = defaultStats
-        updateSelectionDisplay(selection)
-        updateStatDisplays(stats)
-        pathFound.hide()
-        noPathFound.hide()
+        var stats = statIndex.defaultStats
+        setSelectionDisplay(selection)
+        setStatDisplays(stats)
+        pathFoundMessage.hide()
+        noPathFoundMessage.hide()
     }
     else if (selection.length === 1) {
         var stats = getStats(selection)
-        updatePathDisplay(selection)
-        updateStatDisplays(stats)
+        setSelectionDisplay(selection)
+        setPathDisplay(selection)
+        setStatDisplays(stats)
     }
     else if (selection.length > 1) {
-        var path = findCareerPath(selection[0], selection[selection.length - 1])
-        updatePathDisplay(path)
+        var path = getCareerPath(selection[0], selection[selection.length - 1])
+        setPathDisplay(path)
         
         if (path.length > 0)
             selection = path
@@ -236,29 +237,30 @@ function updateView(selection) {
         network.setSelection({nodes: selection, edges: pathEdges})
         network.fit({nodes: path, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
         
-        updateSelectionDisplay(selection)
-        updateStatDisplays(stats)
+        setSelectionDisplay(selection)
+        setStatDisplays(stats)
+        selectedNodes = selection
     }
 }
-function searchCareer() {
-    var careerName = searchField.val()
+function uiCareerSearch() {
+    var careerName = careerSearchField.val()
     var index = careerIndex.get(careerName, -1)
     if (index > -1) {
         network.fit({nodes: [index], animation: {duration: 225, easingFunction: 'easeInOutQuad'}})
     } else {
-        noPathFound.show()
+        noPathFoundMessage.show()
     }
 }
-function searchPath() {
-    pathFound.hide()
-    noPathFound.hide()
-    var start = pathSearchFields.eq(0).val()
-    var end = pathSearchFields.eq(1).val()
+function uiCareerPathSearch() {
+    pathFoundMessage.hide()
+    noPathFoundMessage.hide()
+    var start = careerPathSearchFields.eq(0).val()
+    var end = careerPathSearchFields.eq(1).val()
     start = careerIndex.get(start, false)
     end = careerIndex.get(end, false)
     if (start && end) {
         var path = searcher.getPath(start, end).reverse()
-        updatePathDisplay(path)
+        setPathDisplay(path)
         network.fit({nodes: path, animation: {duration: 200, easingFunction: 'easeInOutQuad'}})
         if (path.length > 0) {
             selectedNodes = path
@@ -267,27 +269,24 @@ function searchPath() {
             network.selectNodes(selectedNodes, false)
             network.selectEdges(pathEdges)
             network.setSelection({nodes: selectedNodes, edges: pathEdges})
-            updateSelectionDisplay(selectedNodes)
-            updateStatDisplays(stats)
+            setSelectionDisplay(selectedNodes)
+            setStatDisplays(stats)
         }
     } else {
-        noPathFound.show()
+        noPathFoundMessage.show()
     }
 }
-
-function init() {
-    pathFound.hide()
-    noPathFound.hide()
+function pageSetup() {
+    pathFoundMessage.hide()
+    noPathFoundMessage.hide()
     network.on('selectNode', function(e) {
-        selectedNodes = getSelectedNodes(selectedNodes, e.nodes, 'select')
+        selectedNodes = getSelection(selectedNodes, e.nodes, 'select')
         updateView(selectedNodes)
     })
     network.on('deselectNode', function(e) {
-        selectedNodes = getSelectedNodes(selectedNodes, e.nodes, 'deselect')
+        selectedNodes = getSelection(selectedNodes, e.nodes, 'deselect')
         updateView(selectedNodes)
     })
-
-
     var autoCompleteOptions = {
         source: careers,
         minLength: 2
@@ -303,5 +302,5 @@ function init() {
 }
 
 $(function(){
-    init()
+    pageSetup()
 })
