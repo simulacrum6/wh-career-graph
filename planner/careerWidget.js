@@ -247,6 +247,8 @@ function uiCareerSearch() {
     var index = careerIndex.get(careerName, -1)
     if (index > -1) {
         network.fit({nodes: [index], animation: {duration: 225, easingFunction: 'easeInOutQuad'}})
+        network.selectNodes([index], false)
+        updateView([index])
     } else {
         noPathFoundMessage.show()
     }
