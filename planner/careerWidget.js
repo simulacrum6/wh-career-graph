@@ -48,7 +48,7 @@ var options = {
         arrowStrikethrough: false,
         color: {
             color: '#aaa',
-            opacity: 0.33
+            opacity: 0.65
         },
         dashes: true,
         chosen: {
