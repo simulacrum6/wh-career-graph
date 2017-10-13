@@ -1,21 +1,2 @@
-# wh-career-graph
-A graph visualisation of careers in the Warhammer Fantasy Role Playing Game
-
-# Structure
-
-## Nodes
-
-id;name;type;role;entries;exits
-
-types -- Basic, Advanced
-role -- Academics, Commoners, Criminals, Rangers, Warriors
-
-## Edges
-
-from;to
-
-# TODO:
-Fix stats
-Fix edgeselection
-Fix colors
-Fix broken careers
+# Warhammer Career Exploration
+A visual exploration tool for career-paths in the Warhammer Fantasy Role Playing Game (2nd edition).
